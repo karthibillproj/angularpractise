@@ -1,0 +1,56 @@
+ <!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<body>
+
+<h2>Signup</h2>
+
+<form  ng-app="myApp"  ng-controller="validateCtrl"
+name="myForm" novalidate>
+
+<p>Firstname:<br>
+  <input type="text" name="firstname" ng-model="firstname" required>
+  <span style="color:red" ng-show="myForm.firstname.$dirty && myForm.firstname.$invalid">
+  <span ng-show="myForm.firstname.$error.required">firstname is required.</span>
+  </span>
+</p>
+
+<p>Lastname:<br>
+  <input type="text" name="lastname" ng-model="lastname" required>
+  <span style="color:red" ng-show="myForm.lastname.$dirty && myForm.lastname.$invalid">
+  <span ng-show="myForm.lastname.$error.required">lastname is required.</span>
+  </span>
+</p>
+
+<p>Email:<br>
+  <input type="email" name="email" ng-model="email" required>
+  <span style="color:red" ng-show="myForm.email.$dirty && myForm.email.$invalid">
+  <span ng-show="myForm.email.$error.required">Email is required.</span>
+  <span ng-show="myForm.email.$error.email">Invalid email address.</span>
+  </span>
+</p>
+
+<p>Password:<br>
+  <input type="password" name="password" ng-model="password" required>
+  <span style="color:red" ng-show="myForm.password.$dirty && myForm.password.$invalid">
+  <span ng-show="myForm.password.$error.required">password is required.</span>
+  </span>
+</p>
+
+<p>
+  <input type="submit"
+  ng-disabled="myForm.firstname.$dirty && myForm.firstname.$invalid || myForm.lastname.$dirty && myForm.lastname.$invalid || myForm.password.$dirty && myForm.password.$invalid ||
+  myForm.email.$dirty && myForm.email.$invalid">
+</p>
+
+</form>
+
+<script>
+var app = angular.module('myApp', []);
+app.controller('validateCtrl', function($scope) {
+    $scope.email = 'john.doe@gmail.com';
+});
+</script>
+
+</body>
+</html> 
